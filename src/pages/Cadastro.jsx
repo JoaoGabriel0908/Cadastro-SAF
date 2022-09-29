@@ -127,10 +127,10 @@ const Cadastro = () => {
                     error={errors.emailPaciente}
                     onFocus={() => {
                         // Tirando a mensagem de erro
-                        handleErrors(null, "nomePaciente");
+                        handleErrors(null, "emailPaciente");
                     }}
                     onChangeText={(text) =>
-                        handleOnChange(text, "nomePaciente")
+                        handleOnChange(text, "emailPaciente")
                     }
                 />
                 <Input

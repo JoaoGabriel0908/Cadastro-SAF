@@ -21,6 +21,7 @@ const Input = ({label, iconName, error, onFocus = () => {}, placeholder, ...prop
           }}
           {...props}
           placeholder={placeholder}
+          
         />
       </View>
 
