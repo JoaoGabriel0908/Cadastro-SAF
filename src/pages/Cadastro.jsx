@@ -1,11 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import Layout from "../components/Layout";
 import COLORS from "../const/Colors";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import apiPaciente from "../service/apiPaciente";
 
 const Cadastro = () => {
+    const navigation = useNavigation();
+
     const [inputs, setInputs] = React.useState({
         // O useState sempre representa essa estrutura
         // Chave = inputs / valor = inputs
@@ -13,6 +17,8 @@ const Cadastro = () => {
         telefonePaciente: "",
         celularPaciente: "",
         emailPaciente: "",
+        nomeResponsavel: "",
+        telefoneResponsavel:"",
     });
 
     // FUNÇÃO QUE MANIPULA A ENTRADA DE DADOS NA
@@ -72,15 +78,27 @@ const Cadastro = () => {
         if (validate) {
             // Envia os dados para a API cadastrar.
             cadastrar();
-            console.log("Cadastrou");
+            navigation.navigate("Listagem")
+            console.log('Cadastrou')
         }
+
+        console.log(errors)
     };
 
     // Função que cria o cadastro com o post
     const cadastrar = () => {
         try {
-            console.log('Cadastrado');
-        } catch (error) {}
+            const response = apiPaciente.post('/cadastrarPaciente', {
+                nomePaciente: inputs.nomePaciente,
+                telefonePaciente: inputs.telefonePaciente,
+                celularPaciente: inputs.celularPaciente,
+                emailPaciente: inputs.emailPaciente,
+                nomeResponsavel: inputs.nomeResponsavel,
+                telefoneResponsavel: inputs.telefoneResponsavel,
+            })
+        } catch (error) {
+            console.log(error)
+        }
     };
     return (
         <Layout>
@@ -136,10 +154,24 @@ const Cadastro = () => {
                 <Input
                     placeholder="Nome responsável"
                     iconName="account-multiple"
+                    error={errors.nomePaciente}
+                    onFocus={() => {
+                        // Tirando a mensagem de erro
+                        handleErrors(null, "nomePaciente");
+                    }}
+                    onChangeText={(text) =>
+                        handleOnChange(text, "nomePaciente")}
                 />
                 <Input
                     placeholder="Telefone responsável"
                     iconName="phone-plus"
+                    error={errors.telefonePaciente}
+                    onFocus={() => {
+                        // Tirando a mensagem de erro
+                        handleErrors(null, "telefonePaciente");
+                    }}
+                    onChangeText={(text) =>
+                        handleOnChange(text, "telefonePaciente")}
                 />
                 <View style={estilos.botoes}>
                     <Button title="Registrar-se" onPress={validate}/>
