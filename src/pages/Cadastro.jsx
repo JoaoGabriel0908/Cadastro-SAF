@@ -89,12 +89,12 @@ const Cadastro = () => {
     const cadastrar = () => {
         try {
             const response = apiPaciente.post('/cadastrarPaciente', {
-                nomePaciente: inputs.nomePaciente,
-                telefonePaciente: inputs.telefonePaciente,
-                celularPaciente: inputs.celularPaciente,
-                emailPaciente: inputs.emailPaciente,
-                nomeResponsavel: inputs.nomeResponsavel,
-                telefoneResponsavel: inputs.telefoneResponsavel,
+                nome_paciente: inputs.nomePaciente,
+                telefone_paciente: inputs.telefonePaciente,
+                celular_paciente: inputs.celularPaciente,
+                email_paciente: inputs.emailPaciente,
+                nome_responsavel: inputs.nomeResponsavel,
+                telefone_responsavel: inputs.telefoneResponsavel,
             })
         } catch (error) {
             console.log(error)
@@ -154,29 +154,28 @@ const Cadastro = () => {
                 <Input
                     placeholder="Nome responsável"
                     iconName="account-multiple"
-                    error={errors.nomePaciente}
+                    // error={errors.nomePaciente}
                     onFocus={() => {
                         // Tirando a mensagem de erro
-                        handleErrors(null, "nomePaciente");
+                        handleErrors(null, "nomeResponsavel");
                     }}
                     onChangeText={(text) =>
-                        handleOnChange(text, "nomePaciente")}
+                        handleOnChange(text, "nomeResponsavel")}
                 />
                 <Input
                     placeholder="Telefone responsável"
                     iconName="phone-plus"
-                    error={errors.telefonePaciente}
+                    // error={errors.telefonePaciente}
                     onFocus={() => {
                         // Tirando a mensagem de erro
-                        handleErrors(null, "telefonePaciente");
+                        handleErrors(null, "telefoneResponsavel");
                     }}
                     onChangeText={(text) =>
-                        handleOnChange(text, "telefonePaciente")}
+                        handleOnChange(text, "telefoneResponsavel")}
                 />
                 <View style={estilos.botoes}>
                     <Button title="Registrar-se" onPress={validate}/>
                 </View>
-                <Text style={estilos.login}>Já tem uma conta?Login</Text>
             </View>
         </Layout>
     );
