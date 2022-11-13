@@ -8,9 +8,6 @@ export default function Layout(props) {
     return (
         <SafeAreaView style={estilos.container}>
             <View style={estilos.imagemFundo}>
-                <View style={estilos.text}>
-                    <Text style={estilos.textTitle}>Cadastro</Text>
-                </View>
             </View>
             <View style={estilos.containerForm}>{props.children}</View>
         </SafeAreaView>

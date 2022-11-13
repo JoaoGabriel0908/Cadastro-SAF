@@ -42,7 +42,7 @@ const Cadastro = () => {
     // Função Handler que configura as mensagens de erros na state
     // Pegando as mensagens de erros e onde ocorreu (input)
     const handleErrors = (errorMessage, input) => {
-        // Quando usamos um par de parenteses quer dizer que estamos dando um RETURN
+        // Quando usamos um par de parenteses quer dizer que ettamos dando um RETURN
         setErrors((prevState) => ({
             ...prevState,
             [input]: errorMessage,
@@ -78,7 +78,7 @@ const Cadastro = () => {
         if (validate) {
             // Envia os dados para a API cadastrar.
             cadastrar();
-            navigation.navigate("Listagem")
+            // navigation.navigate("Listagem")
             console.log('Cadastrou')
         }
 
@@ -96,6 +96,7 @@ const Cadastro = () => {
                 nome_responsavel: inputs.nomeResponsavel,
                 telefone_responsavel: inputs.telefoneResponsavel,
             })
+            navigation.navigate("Listagem")
         } catch (error) {
             console.log(error)
         }
